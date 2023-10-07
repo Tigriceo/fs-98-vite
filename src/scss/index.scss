@@ -1,0 +1,152 @@
+@use "sass:math";
+
+@import url('./_vars.scss');
+@import url('./sections/_section-hero.scss');
+
+
+$base-color: #c6538c;
+$mb-size: 480px;
+$tablet-size: 767px;
+$dt-size: 1100px;
+
+// px to rem
+@function rem($px) {
+    $result: math.div($px, 16) + rem;
+    @return $result;
+}
+// line height
+@function lineH($px1, $px2) {
+    $result: math.div($px1, $px2);
+    @return $result;
+}
+
+@function invert($color, $amount: 100%) {
+    $inverse: change-color($color, $hue: hue($color) + 180);
+    @return mix($inverse, $color, $amount);
+}
+//медіа запити
+// для телефону
+@mixin minPhone {
+    @media screen and (min-width:$mb-size) {
+        @content;
+    }
+}
+
+@mixin maxPhone {
+    @media screen and (max-width:$mb-size) {
+        @content;
+    }
+}
+
+// планшет
+@mixin minTablet {
+    @media screen and (min-width:$tablet-size) {
+        @content;
+    }
+}
+
+@mixin maxTablet {
+    @media screen and (max-width:$tablet-size) {
+        @content;
+    }
+}
+
+// десктоп
+@mixin minDt {
+    @media screen and (min-width:$dt-size) {
+        @content;
+    }
+}
+
+@mixin maxDt {
+    @media screen and (max-width:$dt-size) {
+        @content;
+    }
+}
+
+
+.color-test {
+    color: $base-color;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+
+.hero {
+    padding: 100px 0;
+
+    &-title {
+        font-size: 36px;
+    }
+
+    &-list {
+        position: relative;
+        display: flex;
+        padding: 25px;
+
+        &::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            background-color: #000;
+            opacity: 0.2;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        &__item {
+            // @extend .color-test;
+            color: invert(#000, 80);
+            font-size: rem(24);
+            line-height: lineH(40, 26);
+
+            @include minPhone() {
+                font-size: rem(36);
+            }
+
+            @include minTablet() {
+                font-size: rem(42);
+            }
+
+            @include minDt() {
+                font-size: rem(52);
+            }
+
+            span {
+                @extend .visually-hidden;
+            }
+        }
+    }
+}
+
+// бем
+
+.block {
+    padding: 20px 0;
+
+    &--block {
+        padding: 0;
+    }
+}
+
+.hero {}
+
+.hero-title {}
+
+.hero-list {
+    &__item {}
+}
