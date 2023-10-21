@@ -19,11 +19,6 @@ $dt-size: 1100px;
     $result: math.div($px1, $px2);
     @return $result;
 }
-
-@function invert($color, $amount: 100%) {
-    $inverse: change-color($color, $hue: hue($color) + 180);
-    @return mix($inverse, $color, $amount);
-}
 //медіа запити
 // для телефону
 @mixin minPhone {
@@ -110,7 +105,6 @@ $dt-size: 1100px;
 
         &__item {
             // @extend .color-test;
-            color: invert(#000, 80);
             font-size: rem(24);
             line-height: lineH(40, 26);
 

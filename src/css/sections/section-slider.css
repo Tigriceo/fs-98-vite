@@ -1,0 +1,17 @@
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-color: red;
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.selects {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
